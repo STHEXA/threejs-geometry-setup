@@ -24,6 +24,7 @@ document.body.appendChild(renderer.domElement);
  **/
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16);
+const planeGeometry = new THREE.PlaneGeometry(10, 10);
 
 //マテリアル
 const material = new THREE.MeshNormalMaterial({
@@ -33,9 +34,12 @@ const material = new THREE.MeshNormalMaterial({
 //メッシュ化
 const box = new THREE.Mesh(geometry, material);
 const sphere = new THREE.Mesh(sphereGeometry, material);
+const plane = new THREE.Mesh(planeGeometry, material);
 
 sphere.position.x = 1.5;
-scene.add(box, sphere);
+plane.rotation.x = -Math.PI * 0.5;
+plane.position.y = -0.5;
+scene.add(box, sphere, plane);
 
 //ライト
 const ambientLight = new THREE.AmbientLight(0xfff);
