@@ -22,11 +22,24 @@ document.body.appendChild(renderer.domElement);
 /**
  * ジオメトリを作ってみよう。
  **/
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16);
 
 //マテリアル
-const material = new THREE.MeshStandardMaterial({
-  color: "blue",
+const material = new THREE.MeshNormalMaterial({
+  // wireframe: true,
 });
+
+//メッシュ化
+const box = new THREE.Mesh(geometry, material);
+const sphere = new THREE.Mesh(sphereGeometry, material);
+
+sphere.position.x = 1.5;
+scene.add(box, sphere);
+
+//ライト
+const ambientLight = new THREE.AmbientLight(0xfff);
+scene.add(ambientLight);
 
 //マウス操作
 const controls = new OrbitControls(camera, renderer.domElement);
